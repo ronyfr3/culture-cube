@@ -1,0 +1,83 @@
+
+.userProfileContent {
+  display: grid;
+  grid-template-columns: 30rem 1fr;
+}
+
+.userProfileRight {
+  padding: 5rem 10rem;
+}
+
+.profileAndDetails {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.details {
+  margin-left: 10rem;
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.details h3 {
+  margin-bottom: 5rem;
+  font-weight: 500;
+}
+
+.details img {
+  margin-bottom: 1.5rem;
+}
+
+.details p {
+  color: #000000;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.userProfileForm input {
+  width: 100%;
+  border: 1px solid #636364;
+  padding: 1.2rem;
+  margin-bottom: 3rem;
+  border-radius: 5px;
+  font-size: 1.6rem;
+}
+
+.userProfileForm label {
+  display: block;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  color: #5E6164;
+  font-weight: 300;
+}
+
+.userProfileButtons {
+  display: flex;
+  align-items: center;
+}
+
+.userProfileButtons .saveBtn, .userProfileButtons .cancelBtn  {
+  border: 0;
+  padding: 1rem 1.5rem;
+  background-color: transparent;
+  text-transform: uppercase;
+  font-family: inherit;
+  font-size: 1.4rem;
+  font-weight: 400;
+  cursor: pointer;
+  color: #fff;
+}
+
+.userProfileButtons .cancelBtn {
+  border: 1px solid #3CC3EC;
+  margin-left: 2rem;
+  color: #3CC3EC;
+}
+
+.userProfileButtons .saveBtn {
+  background-color: #3CC3EC;
+} 

@@ -1,0 +1,89 @@
+
+.userWishlistContent {
+    display: grid;
+    grid-template-columns: 30rem 1fr;
+  }
+  
+  .userWishlistRight {
+    padding: 5rem 10rem;
+    background-color: #F5F5F5;
+  }
+  
+  .userAllWishlist {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      align-items: center;
+      grid-gap: 5rem;
+      background-color: #fff;
+      padding: 5rem;
+      border-radius: 3px;
+      margin-bottom: 5rem;
+  }
+  
+
+  .userAllWishlistLeft {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+
+  .userAllWishlistLeft img {
+      margin-right: 2rem;
+  }
+
+  .userAllWishlistLeft h5 {
+      color: #585858;
+      font-weight: 600;
+      margin-bottom: 1rem;
+  }
+
+  .userAllWishlistLeft p {
+      font-size: 1.4rem;
+      color: #585858;
+      font-weight: 400;
+      margin-bottom: 1rem;
+  }
+
+  .userAllWishlistLeft .review {
+      margin-bottom: 1rem;
+  }
+
+  .userAllWishlistLeft .review i {
+    font-size: 1rem;
+    color: #FFB800;
+    margin-right: 1rem;
+  }
+
+  .userAllWishlistLeft .countInStock {
+      color: #48D04E;
+      font-size: 1.6rem;
+      font-weight: 500;
+  }
+
+  .userAllWishlistRight {
+      text-align: right;
+  }
+
+  .userAllWishlistRight p {
+      color: #FB3055;
+      font-size: 1.6rem;
+      margin-bottom: 3rem;
+  }
+
+  .userAllWishlistRight h3 {
+      color: #585858;
+      margin-bottom: 2rem;
+  }
+
+  .userAllWishlistRight .addCartBtn {
+    border: 0;
+    font-family: inherit;
+    background-color: #3CC3EC;
+    padding: 1rem 2rem;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #fff;
+    text-transform: uppercase;
+    border-radius: 1rem;
+    cursor: pointer;
+  }

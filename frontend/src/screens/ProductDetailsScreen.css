@@ -1,0 +1,400 @@
+.productDetailsSection {
+  background-color: #f6f6f6;
+  padding: 7rem 0;
+}
+
+.productDetailsContent {
+  display: grid;
+  grid-template-columns: 45rem 1fr;
+  grid-gap: 7rem;
+  align-items: center;
+}
+
+.productSlider img {
+  width: 100%;
+}
+
+.productSliderOne img {
+  margin-bottom: 5rem;
+}
+
+.productSlider .slick-prev, .productSlider .slick-next {
+  position: absolute;
+  top: 50%;
+  display: block;
+  width: 2.5rem;
+  height: 2.5rem;
+  transform: translate(0, -50%);
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.productSlider .slick-next:before {
+  content: "\f105";
+  margin-left: 1rem;
+}
+
+.productSlider .slick-prev:before {
+  content: "\f104";
+  margin-right: 1rem;
+}
+
+.productSlider .slick-prev:before, .productSlider .slick-next:before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  font-size: 3rem;
+  color: #74777A;
+}
+
+.productSlider .productSliderTwo img {
+  width: 90%;
+  cursor: pointer;
+}
+
+.productDetailsRight > div {
+  margin-bottom: 3rem;
+}
+
+.productDetailsRight h4 {
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+  color: #2c2c33;
+}
+
+.productDetailsName h6 {
+  color: #929aa1;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.productDetailsName h1 {
+  color: #484c50;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.productDetailsName h5 {
+  color: #929aa1;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.productDetailsPrice h5 {
+  color: #2C2C33;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.productDetailsPrice > div {
+  display: flex;
+  align-items: center;
+}
+
+.productDetailsPrice > div h6 {
+  text-decoration: line-through;
+  color: #929aa1;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-left: 2rem;
+}
+
+.productDetailsPrice h4 {
+  color: #484c50;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.productDetailsPrice span {
+  width: 4rem;
+  height: 4rem;
+  background-color: #f54748;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #fff;
+  font-weight: 400;
+  font-size: 1.4rem;
+}
+
+.productDetailsStock h6 {
+  color: #4baa49;
+}
+
+.productDetailsStock > div {
+  display: flex;
+  align-items: center;
+}
+
+.productDetailsStock > div h5 {
+  color: #929aa1;
+  font-weight: 500;
+}
+
+.productDetailsStock .review {
+  margin: 0 1rem;
+}
+
+.productDetailsStock .review i {
+  color: #fbaa4c;
+  font-size: 1.3rem;
+  margin-right: 0.6rem;
+}
+
+.productDetailsStock a {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #5a6d80;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.productDetailsSize .size {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.productDetailsSize .size button {
+  padding: 2rem 2.5rem;
+  border: 0;
+  background-color: transparent;
+  border: 2px solid #707070;
+  color: #6B6B6B;
+  font-size: 2rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.productDetailsSize h4, .productDetailsDescription h4 {
+  color: #2C2C33;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.productDetailsDescription p {
+  color: #abb1b6;
+  font-size: 1.8rem;
+  font-weight: 300;
+}
+
+.allButtons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.allButtons button {
+  background-color: transparent;
+  border: 0;
+  padding: 2rem 2.5rem;
+  font-size: 2.2rem;
+  font-weight: 500;
+  /* background-color: red; */
+  border-radius: 5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.allButtons .buyBtn {
+  background-color: #0EBBEF;
+  color: #FFFFFF;
+}
+
+.allButtons .cartBtn {
+  border: 2px solid #0EBBEF;
+  color: #0EBBEF;
+}
+
+.allButtons .wishlistBtn {
+  display: flex;
+  align-items: center;
+  border: 2px solid #9A9A9A;
+  color: #9A9A9A;
+}
+
+.allButtons .wishlistBtn img {
+  width: 3.5rem;
+  margin-right: 1rem;
+}
+
+.productDetailsRight .productDetailsShare {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.productDetailsShare h5 {
+  color: #484c50;
+  text-transform: uppercase;
+}
+
+.socialDediaShare {
+  display: flex;
+  align-items: center;
+}
+
+.socialMediaShare a {
+  color: #929aa1;
+  text-transform: uppercase;
+  margin-left: 3rem;
+  font-size: 2.5rem;
+}
+
+.specificationAndReviewsSection {
+  padding: 7rem 0;
+  background-color: #f6f6f6;
+}
+
+.specificationAndReviewsWrapper > ul.specificationReviews {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  border-bottom: 2px solid #484c50;
+}
+
+.specificationAndReviewsWrapper > ul.specificationReviews li {
+  flex: 0.5;
+}
+
+.specificationAndReviewsWrapper > ul.specificationReviews li a {
+  text-align: center;
+  display: block;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #484c50;
+  font-size: 2rem;
+  font-weight: 600;
+  flex: 0.5;
+  border-bottom: 2px solid #c9d2d9;
+  padding-bottom: 2rem;
+  position: relative;
+  top: 2px;
+}
+
+.specificationAndReviewsWrapper > ul.specificationReviews a:hover {
+  border-bottom: 2px solid #484c50;
+}
+
+.specificationAndReviewsWrapper > p {
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: #484c50;
+}
+
+.specificationAndReviewsWrapper > ul.details {
+  list-style-type: disc;
+  /* padding-left: 4rem; */
+  padding: 2rem 0 2rem 4rem;
+}
+
+.specificationAndReviewsWrapper > ul.details li {
+  font-size: 1.6rem;
+  color: #484c50;
+  font-weight: 400;
+}
+
+.specificationAndReviewsContent {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  grid-gap: 7rem;
+  padding: 3rem 0;
+}
+
+.specificationAndReviewsRight img {
+  width: 100%;
+  border-radius: 5px;
+  vertical-align: middle;
+}
+
+.specificationAndReviewsLeft {
+  display: flex;
+  align-items: center;
+}
+
+.specificationAndReviewsLeft p {
+  color: #929aa1;
+}
+
+.specificationAndReviewsLeft span {
+  color: #484c50;
+}
+
+.specificationAndReviewsLeft ul.attributes {
+  list-style: none;
+  
+}
+
+.specificationAndReviewsLeft ul.attributes li {
+  display: grid;
+  grid-template-columns: 15rem 1fr;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.buyerQaSection {
+  padding: 7rem 0;
+  background-color: #F6F6F6;
+}
+
+.buyerQaWrapper h3 {
+  color: #484C50;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 5rem 0;
+}
+
+.buyerQaImages {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 5rem;
+}
+
+.buyerQaImages img {
+  width: 100%
+}
+
+.buyerQa {
+  background-color: #FFFFFF;
+  padding: 3rem 5rem;
+  border-radius: 2rem;
+  margin-bottom: 5rem;
+}
+
+.buyerQa .questionContent, .buyerQa .answerContent {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.buyerQa img {
+  margin-right: 2rem;
+}
+
+.buyerQa .question {
+  font-size: 2.5rem;
+  color: #000000;
+  font-weight: 500;
+}
+
+.buyerQa .answer {
+  font-size: 2rem;
+  color: #000000;
+  font-weight: 400;
+}
+
+.buyerQa a {
+  text-decoration: none;
+  color: #0EBBEF;
+  font-size: 2rem;
+  font-weight: 500;
+}

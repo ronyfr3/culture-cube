@@ -1,0 +1,112 @@
+.productCreateScreen {
+  display: grid;
+  grid-template-columns: 0.2fr 1fr;
+  grid-gap: 3rem;
+  background-color: #f5f5f5;
+  padding-right: 2rem;
+}
+
+.productCreateForm {
+  padding: 5rem 0;
+}
+
+.productCreateForm input, .productCreateForm textarea {
+  width: 100%;
+  border: 1px solid #C9D2D9;
+  padding: 1.2rem;
+  border-radius: 3px;
+  margin-bottom: 2rem;
+  font-size: 1.4rem;
+  font-family: inherit;
+  color: #82848B;
+}
+
+.productCreateForm h6 {
+  color: #484C50;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.addProduct h4 {
+  color: #484C50;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.specification {
+  display: grid;
+  grid-gap: 10rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.productCreateForm  p {
+  font-size: 1.6rem;
+  font-weight: 300;
+  margin-bottom: 5px;
+}
+
+.productCreateForm .publishBtn {
+  background-color: #484C50;
+  border-radius: 3px;
+  font-family: inherit;
+}
+
+.input-tag {
+  background: white;
+  border: 1px solid #d6d6d6;
+  border-radius: 2px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px 5px 0;
+}
+
+.input-tag input {
+  border: none;
+  width: 100%;
+}
+
+.input-tag__tags {
+  display: inline-flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.input-tag__tags li {
+  align-items: center;
+  background: #85A3BF;
+  border-radius: 2px;
+  color: white;
+  display: flex;
+  font-weight: 300;
+  list-style: none;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  padding: 5px 10px;
+}
+
+.input-tag__tags li button {
+  align-items: center;
+  appearance: none;
+  background: #333333;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 12px;
+  height: 15px;
+  justify-content: center;
+  line-height: 0;
+  margin-left: 8px;
+  padding: 0;
+  transform: rotate(45deg);
+  width: 15px;
+}
+
+.input-tag_tags li.input-tagtags_input {
+  background: none;
+  flex-grow: 1;
+  padding: 0;
+}

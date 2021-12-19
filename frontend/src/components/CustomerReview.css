@@ -1,0 +1,79 @@
+.customerReviewSection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #F6F6F6;
+    background-repeat: no-repeat;
+    border-bottom: 2rem solid #3CC3EC;
+    height: 70rem;
+}
+
+.customerReviewWrapper {
+    text-align: center;
+}
+
+.customerReviewWrapper h3 {
+    color: #383949;
+    margin-bottom: 2rem;
+}
+
+.customerReviewWrapper p {
+    color: #383949;
+    font-size: 1.6rem;
+    font-weight: 300;
+}
+
+.customerReviewSlider {
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.customerReviewWrapper .customerReview {
+    background-color: #FEFEFE;
+    border: 1px solid #DBDBDB;
+    border-radius: 5px;
+    padding: 3rem 5rem;
+    margin-top: 10rem;
+}
+
+.customerReview img {
+    width: 10rem;
+    height: 10rem;
+    object-fit: cover;
+    margin: auto;
+    position: relative;
+    margin-top: -8.5rem;
+}
+
+.customerReview h5 {
+    color: #383949;
+    margin: .5rem 0;
+}
+
+.customerReview h6 {
+    color: #383949;
+    margin-bottom: 2rem;
+}
+
+.customerReview i {
+    color: #FFB800;
+    font-size: 1rem;
+    margin-left: 1rem;
+}
+
+/* .customerReviewWrapper .product-slider .slick-prev:before, .slick-next:before {
+    font-family: 'slick';
+    font-size: 20px;
+    line-height: 1;
+    opacity: .75;
+    color: #484C50;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.slick-next:before {
+    content: '\f054';
+    font-family: "Font Awesome 5"; 
+	font-weight: 500;
+} */

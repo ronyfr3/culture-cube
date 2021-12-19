@@ -1,0 +1,19 @@
+.shoppingCartBannerSection {
+  background-repeat: no-repeat;
+  height: 30rem;
+  background-position: center center;
+  background-size: cover;
+}
+
+.shoppingCartBannerContent {
+  display: flex;
+  align-items: center;
+  height: 30rem;
+  justify-content: center;
+}
+
+.shoppingCartBannerContent h1 {
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}

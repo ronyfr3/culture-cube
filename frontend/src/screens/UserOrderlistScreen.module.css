@@ -1,0 +1,10 @@
+
+.userOrderlistContent {
+    display: grid;
+    grid-template-columns: 30rem 1fr;
+  }
+  
+  .userOrderlistRight {
+    padding: 5rem 10rem;
+    background-color: #F5F5F5;
+  }

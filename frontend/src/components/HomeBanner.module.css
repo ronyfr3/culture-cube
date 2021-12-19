@@ -1,0 +1,76 @@
+.homeBannerSection {
+  height: 80vh;
+  /* display: flex; */
+  /* align-items: center; */
+  background-repeat: no-repeat;
+  background-position: top left, top right;
+  background-size: 50% 100%;
+}
+
+.homeBannerWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: inherit;
+  text-align: center;
+}
+
+.homeBannerContent h1 {
+  color: #FFFFFF;
+  margin-bottom: 3rem;
+}
+
+.homeBannerContent p {
+  color: #FFFFFF;
+  font-size: 1.6rem;
+  margin-bottom: 3rem;
+}
+
+.homeBannerContent .shopBtn {
+  background-color: #fff;
+  font-size: 1.8rem;
+  color: #484848;
+  width: 16rem;
+  font-weight: 600;
+  margin: 0 auto;
+}
+@media (max-width: 1200px) {
+  .homeBannerWrapper .slick-dots li button:before {
+    top: 0.2rem;
+    left: 0.18rem;
+    width: 1.5rem;
+    height: 1.5rem;
+
+  }
+}
+
+@media (max-width: 1000px) {
+  .homeBanner p {
+    width: 100%;
+  }
+
+  .homeBannerSection {
+    text-align: center;
+    height: 85vh;
+  }
+
+  .homeBanner button {
+    width: 19rem;
+    margin: auto;
+    margin-bottom: 5rem;
+  }
+
+  .homeBannerWrapper .slick-dots li button:before {
+    top: 0.4rem;
+    left: 0.35rem;
+    width: 1.2rem;
+    height: 1.2rem;
+
+  }
+}
+
+@media (max-width: 800px) {
+  .homeBanner h1 {
+    line-height: 1.2;
+  }
+}

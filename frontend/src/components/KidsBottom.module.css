@@ -1,0 +1,38 @@
+.kidsBottomSection {
+    padding: 5rem 0;
+}
+
+.kidsBottomWrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 5rem;
+    height: 55rem;
+}
+
+.kidsBottomLeft, .kidsBottomRight {
+    padding: 0 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.kidsBottomWrapper h2 {
+    color: #fff;
+    margin-bottom: 3rem;
+}
+
+.kidsBottomWrapper p {
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 3rem;
+}
+
+.kidsBottomWrapper button {
+    width: 16rem;
+    margin: 0 auto;
+    background-color: #FEFEFE;
+    color: #000000;
+    font-weight: 600;
+}
