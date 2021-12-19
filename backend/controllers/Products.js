@@ -82,6 +82,14 @@ const Products = {
       return next(new ErrorHandler("Item not found", 404));
     }
   }),
+  uniqueCategory: AsyncErrorHandler(async (req, res, next) => {
+    const unique = await Product.distinct("category");
+    if (!unique) {
+      return next(new ErrorHandler("no category found", 404));
+    } else {
+      res.status(200).json({ success: true, unique });
+    }
+  }),
   getAll: AsyncErrorHandler(async (req, res, next) => {
     const apiFeature = new APIfeatures(Product.find(), req.query)
       .search()
@@ -113,13 +121,12 @@ const Products = {
       !req.body.name ||
       !req.body.price ||
       !req.body.image ||
-      !req.body.description
+      !req.body.description ||
+      !req.body.discount
     ) {
       return next(new ErrorHandler("please fill in all fields", 404));
     } else {
-      const { name, type, category, subCategory, price, image, description } =
-        req.body;
-      const product = new Product({
+      const {
         name,
         type,
         category,
@@ -127,6 +134,18 @@ const Products = {
         price,
         image,
         description,
+        discount,
+      } = req.body;
+      const calculatedDiscount = price - (price * discount) / 100;
+      const product = new Product({
+        name,
+        type,
+        category,
+        subCategory,
+        price: calculatedDiscount,
+        image,
+        description,
+        discount,
       });
 
       const product_details = await product.save();
@@ -139,17 +158,27 @@ const Products = {
     if (Object.keys(req.body).length === 0) {
       return next(new ErrorHandler("please fill at least one field", 404));
     } else {
-      const { name, type, category, subCategory, price, image, description } =
-        req.body;
+      const {
+        name,
+        type,
+        category,
+        subCategory,
+        price,
+        image,
+        description,
+        discount,
+      } = req.body;
       const product = await Product.findById(req.params.id);
+      const calculatedDiscount = price - (price * discount) / 100;
       if (product) {
         product.name = name;
         product.image = image;
         product.category = category;
         product.description = description;
         product.subCategory = subCategory;
-        product.price = price;
+        product.price = calculatedDiscount;
         product.type = type;
+        product.discount = discount;
 
         const product_details = await Product.save();
         res

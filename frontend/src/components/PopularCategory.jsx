@@ -1,16 +1,20 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import classes from './PopularCategory.module.css';
+import React from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import classes from "./PopularCategory.module.css";
+import axios from "axios";
 
 const PopularCategory = () => {
-  const { products } = useSelector((state) => state.productsReducer);
+  const [category, setCategory] = React.useState([]);
 
-  function onlyUnique(value, index, self) {
-    return self.indexOf(value) === index;
-  }
-  const uniqueArray = products?.map((x) => x.category.toLowerCase()).filter(onlyUnique);
+  React.useEffect(() => {
+    axios
+      .get("http://localhost:8080/api/products/unique")
+      .then((response) => setCategory(response.data.unique))
+      .then((error) => console.log(error));
+  },[]);
 
+  console.log(category.map((category) => console.log(category)));
   return (
     <section className={classes.popularCategorySection}>
       {/* <similarProduct category={category} /> */}
@@ -22,11 +26,11 @@ const PopularCategory = () => {
           at. Hic vel maxime eos.
         </p>
         <div className={classes.popularCategoryContent}>
-          {uniqueArray?.map(unique => (
+          {category?.map((unique) => (
             <Link key={unique} to={`/category/${unique}`}>
-            <img src='/images/popular_category1.png' alt='Popular Category' />
-            <h4>{unique}</h4>
-          </Link>
+              <img src="/images/popular_category1.png" alt="Popular Category" />
+              <h4>{unique}</h4>
+            </Link>
           ))}
         </div>
       </div>

@@ -1,11 +1,10 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import classes from './PopularItems.module.css';
+import React from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import classes from "./PopularItems.module.css";
 
 const PopularItems = () => {
-  const { products } = useSelector((state) => state.productsReducer);
-  // console.log('products', products)
+  const { products } = useSelector((state) => state.productsReducer.products);
   return (
     <section className={classes.popularItemSection}>
       <div className={`${classes.popularItemWrapper} container`}>
@@ -17,24 +16,28 @@ const PopularItems = () => {
         </p>
         <div className={classes.popularItemContent}>
           <div className={classes.navItem}>
-            <Link to='' className={classes.active}>
+            <Link to="" className={classes.active}>
               ALL CATEGORIES
             </Link>
-            <Link to=''>KNIVES</Link>
-            <Link to=''>HANDGUN</Link>
-            <Link to=''>ASSUALT</Link>
-            <Link to=''>HUNTING</Link>
-            <Link to=''>OPTICS</Link>
+            <Link to="">KNIVES</Link>
+            <Link to="">HANDGUN</Link>
+            <Link to="">ASSUALT</Link>
+            <Link to="">HUNTING</Link>
+            <Link to="">OPTICS</Link>
           </div>
         </div>
         <div className={classes.itemCard}>
           {products?.map((product) => (
-            <Link key={product._id} to={`/product/${product._id}`} className={classes.card}>
+            <Link
+              key={product._id}
+              to={`/product/${product._id}`}
+              className={classes.card}
+            >
               <div className={classes.imageCard}>
                 <img src={product?.productInfo?.image[0]} alt={product.name} />
                 <div className={classes.itemOverlay}>
                   <div className={classes.addToCart}>
-                    <img src='/icons/cart_light.png' alt='Cart' />
+                    <img src="/icons/cart_light.png" alt="Cart" />
                     <p>ADD TO CART</p>
                   </div>
                   <h6>Buy Now</h6>
@@ -51,8 +54,8 @@ const PopularItems = () => {
           ))}
         </div>
         <div className={classes.browseAll}>
-          <button class='btn'>
-            Browse All <img src='/icons/right_arrow.png' alt='Arrow' />
+          <button class="btn">
+            Browse All <img src="/icons/right_arrow.png" alt="Arrow" />
           </button>
         </div>
       </div>
