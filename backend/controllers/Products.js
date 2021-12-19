@@ -115,14 +115,13 @@ const Products = {
   create: AsyncErrorHandler(async (req, res, next) => {
     if (
       Object.keys(req.body).length === 0 ||
+      !req.body.name ||
+      !req.body.type ||
       !req.body.category ||
       !req.body.subCategory ||
-      !req.body.type ||
-      !req.body.name ||
       !req.body.price ||
       !req.body.image ||
-      !req.body.description ||
-      !req.body.discount
+      !req.body.description
     ) {
       return next(new ErrorHandler("please fill in all fields", 404));
     } else {
@@ -134,7 +133,7 @@ const Products = {
         price,
         image,
         description,
-        discount,
+        discount
       } = req.body;
       const calculatedDiscount = price - (price * discount) / 100;
       const product = new Product({
@@ -145,7 +144,7 @@ const Products = {
         price: calculatedDiscount,
         image,
         description,
-        discount,
+        discount
       });
 
       const product_details = await product.save();
@@ -167,6 +166,7 @@ const Products = {
         image,
         description,
         discount,
+        countInStock
       } = req.body;
       const product = await Product.findById(req.params.id);
       const calculatedDiscount = price - (price * discount) / 100;
@@ -179,6 +179,7 @@ const Products = {
         product.price = calculatedDiscount;
         product.type = type;
         product.discount = discount;
+        product.countInStock = countInStock;
 
         const product_details = await Product.save();
         res
