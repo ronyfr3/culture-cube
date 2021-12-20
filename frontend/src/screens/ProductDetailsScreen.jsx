@@ -8,27 +8,30 @@ import { listProductDetails } from "../actions/productsAction";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 // import SpecificationAndReviews from "../components/Product"
-import RelatedProduct from "../components/RelatedProduct"
+import RelatedProduct from "../components/RelatedProduct";
 import StayInTouch from "../components/StayInTouch";
 import "./ProductDetailsScreen.css";
+// 61bf120a5d7f9fac5c14f29a
 
 import { addToCart } from "../actions/cartActions";
-
 // import products from '../products'
 
 const ProductDetailsScreen = ({ history, match }) => {
+  const dispatch = useDispatch();
   let slider1;
   let slider2;
   const [nav1, setNav1] = useState(null);
   const [nav2, setNav2] = useState(null);
   const id = match.params.id;
-  const dispatch = useDispatch();
-  const productDetails = useSelector((state) => state.productDetails);
-  const { loading, product } = productDetails;
+  const {
+    loading,
+    product: { product },
+  } = useSelector((state) => state.productDetails);
   console.log("product", product);
 
   useEffect(() => {
     dispatch(listProductDetails(id));
+    // dispatch(listProductDetails(id));
     setNav1(slider1);
     setNav2(slider2);
   }, [dispatch, id, slider1, slider2]);
@@ -52,16 +55,7 @@ const ProductDetailsScreen = ({ history, match }) => {
                     </div>
                   ))} */}
                     <div>
-                      <img src="/images/product_details_1.png" alt="" />
-                    </div>
-                    <div>
-                      <img src="/images/product_details_1.png" alt="" />
-                    </div>
-                    <div>
-                      <img src="/images/product_details_1.png" alt="" />
-                    </div>
-                    <div>
-                      <img src="/images/product_details_1.png" alt="" />
+                      <img src={product?.image} alt={product?.name} />
                     </div>
                   </Slider>
                 </div>
@@ -98,14 +92,14 @@ const ProductDetailsScreen = ({ history, match }) => {
             </div>
             <div className="productDetailsRight">
               <div className="productDetailsName">
-                <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, nulla perferendis rem veniam minima commodi dolor ad esse pariatur vel.</h4>
+                <h4>{product?.name}</h4>
                 {/* <h5>CalA: 7.56MM</h5> */}
               </div>
               <div className="productDetailsPrice">
                 <h5>price</h5>
                 <div>
-                  <h4>$1000 aud</h4>
-                  <h6>$92348923 aud</h6> 
+                  <h4>{product?.price}</h4>
+                  {/* <h6>{x.discountedPrice}</h6> */}
                   {/* <span> -15% </span> */}
                 </div>
               </div>
@@ -134,7 +128,7 @@ const ProductDetailsScreen = ({ history, match }) => {
               <div className="productDetailsDescription">
                 <h4>Description</h4>
                 {/* <p>{product?.productInfo?.shortdescription}</p> */}
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam dolorem, delectus est saepe odio quas itaque nesciunt temporibus nobis laborum quae quod. Itaque totam beatae suscipit nemo, repellat labore quam!</p>
+                <p>{product?.description}</p>
               </div>
               {/* <div className="buyAdd">
                 <button className="btn">Buy Now</button>
@@ -148,7 +142,9 @@ const ProductDetailsScreen = ({ history, match }) => {
               <div className="allButtons">
                 <button className="buyBtn">Buy now</button>
                 <button className="cartBtn">Add to cart</button>
-                <button className="wishlistBtn"><img src="/icons/wishlist.png" alt="" /> <span>37.5 K</span></button>
+                <button className="wishlistBtn">
+                  <img src="/icons/wishlist.png" alt="" /> <span>37.5 K</span>
+                </button>
               </div>
               <div className="productDetailsShare">
                 <h5>Share on:</h5>
@@ -219,63 +215,96 @@ const ProductDetailsScreen = ({ history, match }) => {
             </div>
           </div>
           {/* <p>{product?.productInfo?.longdescription}</p> */}
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis dicta in soluta? Dolore maiores natus pariatur magni doloremque? Iure adipisci voluptates nihil itaque fugit aut temporibus placeat deleniti repudiandae. Cum nam inventore nostrum quod sapiente, similique cumque porro, repellat odit exercitationem rem cupiditate non officiis hic suscipit repudiandae alias ex.</p>
-        <ul>
-          <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, soluta!</li>
-          <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, soluta!</li>
-          <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, soluta!</li>
-          <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, soluta!</li>
-          <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, soluta!</li>
-          <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, soluta!</li>
-        </ul>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis
+            dicta in soluta? Dolore maiores natus pariatur magni doloremque?
+            Iure adipisci voluptates nihil itaque fugit aut temporibus placeat
+            deleniti repudiandae. Cum nam inventore nostrum quod sapiente,
+            similique cumque porro, repellat odit exercitationem rem cupiditate
+            non officiis hic suscipit repudiandae alias ex.
+          </p>
+          <ul>
+            <li>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Reprehenderit, soluta!
+            </li>
+            <li>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Reprehenderit, soluta!
+            </li>
+            <li>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Reprehenderit, soluta!
+            </li>
+            <li>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Reprehenderit, soluta!
+            </li>
+            <li>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Reprehenderit, soluta!
+            </li>
+            <li>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Reprehenderit, soluta!
+            </li>
+          </ul>
         </div>
       </section>
       <section className="buyerQaSection">
-                <div className="buyerQaWrapper container">
-                  <div className="buyerQaImages">
-                      <div>
-                        <img src="/images/product_1.png" alt="" />
-                      </div>
-                      <div>
-                        <img src="/images/product_2.png" alt="" />
-                      </div>
-                      <div>
-                        <img src="/images/product_3.png" alt="" />
-                      </div>
-                      <div>
-                        <img src="/images/product_4.png" alt="" />
-                      </div>
-                  </div>
-                  <div className="buyerQaContent">
-                    <h3>Buyer Question & Answer (18)</h3>
-                    <div className="buyerQa">
-                      <div className="questionContent">
-                        <img src="/icons/question.png" alt="" />
-                        <p className="question">Lorem ipsum dolor sit amet?</p>
-                      </div>
-                      <div>
-                        <div className="answerContent">
-                        <img src="/icons/answer.png" alt="" />
-                        <p className="answer">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Asperiores facere non ullam explicabo impedit magnam aut dolor esse iste neque!</p>
-                        </div>
-                        <Link to="/">View more</Link>
-                      </div>
-                    </div>
-                    <div className="buyerQa">
-                      <div className="questionContent">
-                        <img src="/icons/question.png" alt="" />
-                        <p className="question">Lorem ipsum dolor sit amet?</p>
-                      </div>
-                      <div>
-                        <div className="answerContent">
-                        <img src="/icons/answer.png" alt="" />
-                        <p className="answer">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Asperiores facere non ullam explicabo impedit magnam aut dolor esse iste neque!</p>
-                        </div>
-                        <Link to="/">View more</Link>
-                      </div>
-                    </div>
-                  </div>
+        <div className="buyerQaWrapper container">
+          <div className="buyerQaImages">
+            <div>
+              <img src="/images/product_1.png" alt="" />
+            </div>
+            <div>
+              <img src="/images/product_2.png" alt="" />
+            </div>
+            <div>
+              <img src="/images/product_3.png" alt="" />
+            </div>
+            <div>
+              <img src="/images/product_4.png" alt="" />
+            </div>
+          </div>
+          <div className="buyerQaContent">
+            <h3>Buyer Question & Answer (18)</h3>
+            <div className="buyerQa">
+              <div className="questionContent">
+                <img src="/icons/question.png" alt="" />
+                <p className="question">Lorem ipsum dolor sit amet?</p>
+              </div>
+              <div>
+                <div className="answerContent">
+                  <img src="/icons/answer.png" alt="" />
+                  <p className="answer">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                    Asperiores facere non ullam explicabo impedit magnam aut
+                    dolor esse iste neque!
+                  </p>
                 </div>
+                <Link to="/">View more</Link>
+              </div>
+            </div>
+            <div className="buyerQa">
+              <div className="questionContent">
+                <img src="/icons/question.png" alt="" />
+                <p className="question">Lorem ipsum dolor sit amet?</p>
+              </div>
+              <div>
+                <div className="answerContent">
+                  <img src="/icons/answer.png" alt="" />
+                  <p className="answer">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                    Asperiores facere non ullam explicabo impedit magnam aut
+                    dolor esse iste neque!
+                  </p>
+                </div>
+                <Link to="/">View more</Link>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
       <RelatedProduct />
       <StayInTouch />

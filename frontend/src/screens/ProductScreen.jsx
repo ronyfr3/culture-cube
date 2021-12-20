@@ -1,9 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { Link, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Slider from "react-slick";
 import Header from "../components/Header";
-import RelatedProduct from '../components/RelatedProduct'
+import RelatedProduct from "../components/RelatedProduct";
 import { addToCart } from "../actions/cartActions";
 
 import "slick-carousel/slick/slick-theme.css";
@@ -11,8 +11,11 @@ import "slick-carousel/slick/slick.css";
 import "./ProductScreen.css";
 
 const ProductScreen = ({ match }) => {
+  const { category } = useParams();
+  console.log(category);
   // const dispatch = useDispatch();
-  // const { products } = useSelector((state) => state.productsReducer);
+  const { products } = useSelector((state) => state.productsReducer.products);
+  console.log("16", products);
   // const category = match.params.category;
 
   // const categoryArray = products.filter(
@@ -38,89 +41,58 @@ const ProductScreen = ({ match }) => {
       id: "1",
       tabTitle: (
         <button className="landscape">
-                <img src="/icons/landscape.png" alt="" />
-              </button>
+          <img src="/icons/landscape.png" alt="" />
+        </button>
       ),
       tabContent: (
         <div className="landscapeSection">
           <div className="landscapeWrapper">
             <div className="landscapeContent">
-              <div className="landscapeContentLeft">
-                <h4>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis, suscipit.</h4>
-                <h3>$23</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, pariatur. Sequi, ex! Molestiae atque illum veniam facere, dolorum necessitatibus cupiditate.</p>
-                <div className="reviewStar">
-                <i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i>
-                </div>
-                <div className="countInStock">
-                  <span>In stock</span>
-                </div>
-                <div className="landscapeButtons">
-                <button className="buyBtn">Buy now</button>
-                <button className="cartBtn">Add to cart</button>
-                <button className="wishlistBtn"><img src="/icons/wishlist.png" alt="" /> <span>37.5 K</span></button>
-              </div>
-              </div>
-              <div className="landscapeContentRight">
-              <Slider >
-                    {/* {product?.productInfo?.image?.map(image => (
+              {products?.map((x, i) => {
+                return (
+                  <>
+                    <div className="landscapeContentLeft">
+                      <h4>
+                       {x.name}
+                      </h4>
+                      <h3>$ {x.price}</h3>
+                      <p>
+                      {x.description}
+                      </p>
+                      <div className="reviewStar">
+                        <i className="fas fa-star"></i>
+                        <i className="fas fa-star"></i>
+                        <i className="fas fa-star"></i>
+                        <i className="fas fa-star"></i>
+                        <i className="fas fa-star"></i>
+                      </div>
+                      <div className="countInStock">
+                        <span>In stock</span>
+                      </div>
+                      <div className="landscapeButtons">
+                        <button className="buyBtn">Buy now</button>
+                        <button className="cartBtn">Add to cart</button>
+                        <button className="wishlistBtn">
+                          <img src="/icons/wishlist.png" alt="" />{" "}
+                          <span>37.5 K</span>
+                        </button>
+                      </div>
+                    </div>
+                    <div className="landscapeContentRight">
+                      <Slider>
+                        {/* {product?.productInfo?.image?.map(image => (
                     <div>
                       <img src={image} alt="" />
                     </div>
                   ))} */}
-                    <div>
-                      <img src="/images/product_details_1.png" alt="" />
+                        <div>
+                          <img src={x.image} alt="" />
+                        </div>
+                      </Slider>
                     </div>
-                    <div>
-                      <img src="/images/product_details_1.png" alt="" />
-                    </div>
-                    <div>
-                      <img src="/images/product_details_1.png" alt="" />
-                    </div>
-                    <div>
-                      <img src="/images/product_details_1.png" alt="" />
-                    </div>
-                  </Slider>
-              </div>
-            </div>
-            <div className="landscapeContent">
-              <div className="landscapeContentLeft">
-                <h4>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis, suscipit.</h4>
-                <h3>$23</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, pariatur. Sequi, ex! Molestiae atque illum veniam facere, dolorum necessitatibus cupiditate.</p>
-                <div className="reviewStar">
-                <i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i>
-                </div>
-                <div className="countInStock">
-                  <span>In stock</span>
-                </div>
-                <div className="landscapeButtons">
-                <button className="buyBtn">Buy now</button>
-                <button className="cartBtn">Add to cart</button>
-                <button className="wishlistBtn"><img src="/icons/wishlist.png" alt="" /> <span>37.5 K</span></button>
-              </div>
-              </div>
-              <div className="landscapeContentRight">
-              <Slider >
-                    {/* {product?.productInfo?.image?.map(image => (
-                    <div>
-                      <img src={image} alt="" />
-                    </div>
-                  ))} */}
-                    <div>
-                      <img src="/images/product_details_1.png" alt="" />
-                    </div>
-                    <div>
-                      <img src="/images/product_details_1.png" alt="" />
-                    </div>
-                    <div>
-                      <img src="/images/product_details_1.png" alt="" />
-                    </div>
-                    <div>
-                      <img src="/images/product_details_1.png" alt="" />
-                    </div>
-                  </Slider>
-              </div>
+                  </>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -130,16 +102,14 @@ const ProductScreen = ({ match }) => {
       id: "2",
       tabTitle: (
         <button className="grid">
-                <img src="/icons/grid.png" alt="" />
-              </button>
+          <img src="/icons/grid.png" alt="" />
+        </button>
       ),
-      tabContent: (
-        <RelatedProduct />
-      ),
+      tabContent: <RelatedProduct />,
     },
-  ]
+  ];
 
-  const [visibleTab, setVisibleTab] = React.useState(data[0].id)
+  const [visibleTab, setVisibleTab] = React.useState(data[0].id);
 
   const listTitles = data.map((item) => (
     <div
@@ -150,13 +120,13 @@ const ProductScreen = ({ match }) => {
     >
       {item.tabTitle}
     </div>
-  ))
+  ));
 
   const listContent = data.map((item) => (
     <p style={visibleTab === item.id ? {} : { display: "none" }}>
       {item.tabContent}
     </p>
-  ))
+  ));
 
   return (
     <>
@@ -172,8 +142,12 @@ const ProductScreen = ({ match }) => {
         <div className="productBannerWrapper container">
           <div className="productBannerContent">
             <div>
-              <h1>Top Wears</h1>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores, corporis nisi. Obcaecati alias ducimus ullam animi a, provident perferendis omnis!</p>
+              <h1>{category}</h1>
+              <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Dolores, corporis nisi. Obcaecati alias ducimus ullam animi a,
+                provident perferendis omnis!
+              </p>
             </div>
           </div>
         </div>
@@ -187,9 +161,7 @@ const ProductScreen = ({ match }) => {
               <button className="conditionBtn">Condition</button>
               <button className="deliveryBtn">Delivery options</button>
             </div>
-              <div className="grid">
-              {listTitles}
-              </div>
+            <div className="grid">{listTitles}</div>
           </div>
           <div className="productContent">
             <div className="totalSortItems">

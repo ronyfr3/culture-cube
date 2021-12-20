@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Link } from "react-router-dom";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, } from "react";
 import {
   useGlobalFilter,
   usePagination,
@@ -10,15 +10,11 @@ import {
 import { COLUMNS } from "./table/Columns";
 import SearchFilter from "./table/SearchFIlter";
 import classes from "./ReactTable.module.css";
+import { useSelector } from "react-redux";
 
 const ReactTable = () => {
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    axios
-      .get("/api/products")
-      .then((res) => setProducts(res.data))
-      .then((err) => console.log(err));
-  }, []);
+  
+  const { products } = useSelector((state) => state.productsReducer.products);
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => products, [products]);
   //creating table instance

@@ -121,7 +121,8 @@ const Products = {
       !req.body.subCategory ||
       !req.body.price ||
       !req.body.image ||
-      !req.body.description
+      !req.body.description ||
+      !req.body.sizes
     ) {
       return next(new ErrorHandler("please fill in all fields", 404));
     } else {
@@ -133,7 +134,8 @@ const Products = {
         price,
         image,
         description,
-        discount
+        discount,
+        sizes
       } = req.body;
       const calculatedDiscount = price - (price * discount) / 100;
       const product = new Product({
@@ -141,10 +143,12 @@ const Products = {
         type,
         category,
         subCategory,
-        price: calculatedDiscount,
+        price,
+        discountedPrice: calculatedDiscount,
         image,
         description,
-        discount
+        discount,
+        sizes
       });
 
       const product_details = await product.save();
@@ -166,7 +170,8 @@ const Products = {
         image,
         description,
         discount,
-        countInStock
+        countInStock,
+        sizes
       } = req.body;
       const product = await Product.findById(req.params.id);
       const calculatedDiscount = price - (price * discount) / 100;
@@ -176,10 +181,12 @@ const Products = {
         product.category = category;
         product.description = description;
         product.subCategory = subCategory;
-        product.price = calculatedDiscount;
+        product.price = price;
+        product.discountedPrice = calculatedDiscount;
         product.type = type;
         product.discount = discount;
         product.countInStock = countInStock;
+        product.sizes = sizes;
 
         const product_details = await Product.save();
         res

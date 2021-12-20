@@ -4,6 +4,7 @@ const Products = require("../controllers/Products");
 const { protect, admin } = require("../middleware/auth");
 
 router.get("/", Products.getAll);
+router.get("/:id", Products.getOne);
 // router.post("/", protect, admin, Products.create);
 router.post("/",  Products.create);
 router.get("/unique",Products.uniqueCategory)

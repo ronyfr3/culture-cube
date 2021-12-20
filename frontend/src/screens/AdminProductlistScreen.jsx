@@ -28,7 +28,7 @@ const AdminProductlist = () => {
           </div>
           <Link to="/admin/productcreate" className={`btn ${classes.addBtn}`}>+ Add New</Link>
         </div>
-        <ReactTable />
+        <ReactTable/>
       </div>
     </section>
   );
