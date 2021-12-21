@@ -71,6 +71,7 @@ const Navbar = () => {
       .then((err) => console.log(err));
   }, []);
   console.log("products", products);
+
   return (
     <>
       <div className={classes.navbarWrapper}>

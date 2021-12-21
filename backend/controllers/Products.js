@@ -135,7 +135,7 @@ const Products = {
         image,
         description,
         discount,
-        sizes
+        sizes,
       } = req.body;
       const calculatedDiscount = price - (price * discount) / 100;
       const product = new Product({
@@ -148,7 +148,7 @@ const Products = {
         image,
         description,
         discount,
-        sizes
+        sizes,
       });
 
       const product_details = await product.save();
@@ -171,7 +171,7 @@ const Products = {
         description,
         discount,
         countInStock,
-        sizes
+        sizes,
       } = req.body;
       const product = await Product.findById(req.params.id);
       const calculatedDiscount = price - (price * discount) / 100;
@@ -239,5 +239,55 @@ const Products = {
       }
     }
   }),
+  wishlist: AsyncErrorHandler(async (req, res, next) => {
+    if (Object.keys(req.body).length === 0) {
+      return next(new ErrorHandler("wishlist not added!", 404));
+    } else {
+      const product = await Product.findById(req.params.id);
+      if (product) {
+        // const alreadywishlisted = product.wishlist.find(
+        //   (r) => r.user.toString() === req.user._id.toString()
+        // );
+        // if (alreadywishlisted) {
+        //   res.status(400).json({ msg: "Item already wishlisted!" });
+        // }
+        const productobj = {
+          name:product.name,
+          type:product.type,
+          category:product.category,
+          subCategory:product.subCategory,
+          price:product.price,
+          image:product.image,
+          description:product.description,
+          discount:product.discount,
+          sizes:product.sizes
+        }
+        const wishlist = {
+          product:productobj,
+          // user: req.user._id,
+          user: req.body.user,
+        };
+        product.wishlist.push(wishlist);
+        product.totalWishlist = product.wishlist.length;
+        await product.save();
+        res.status(201).json({ message: "wishlist added" });
+      } else {
+        return next(new ErrorHandler("Item not found", 404));
+      }
+    }
+  }),
+  findOnesWishlistedProduct: AsyncErrorHandler(async (req, res, next) => {     
+    const user = req.params.id
+    if (user) {
+      const product = await Product.find({});
+      const userWishlist = product.map(data=>data.wishlist).flat()
+      const filteringwishlistedProduct = userWishlist.filter(x=>Number(x.user)===Number(user))
+      res
+        .status(200)
+        .json({ success: true, product:filteringwishlistedProduct });
+    } else {
+      return next(new ErrorHandler("user not found!", 404));
+    }
+  })
 };
 module.exports = Products;

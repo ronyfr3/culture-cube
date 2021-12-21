@@ -16,6 +16,7 @@ const ProductScreen = ({ match }) => {
   // const dispatch = useDispatch();
   const { products } = useSelector((state) => state.productsReducer.products);
   console.log("16", products);
+
   // const category = match.params.category;
 
   // const categoryArray = products.filter(

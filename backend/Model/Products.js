@@ -29,6 +29,24 @@ const reviewSchema = mongoose.Schema(
     timestamps: true,
   }
 );
+const wishlistSchema = mongoose.Schema(
+  {
+    product:{},
+    user: {
+      type: String,
+      required: true,
+      // ref: "User",
+    },
+    // user: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   required: true,
+    //   ref: "User",
+    // },
+  },
+  {
+    timestamps: true,
+  }
+);
 
 const productSchema = new mongoose.Schema(
   {
@@ -60,11 +78,16 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: [true, "Description field required!"],
     },
-    reviews: [reviewSchema],
+    wishlist:[wishlistSchema],
+    totalWishlist: {
+      type: Number,
+      default: 0,
+    },
     rating: {
       type: Number,
       default: 0,
     },
+    reviews: [reviewSchema],
     numReviews: {
       type: Number,
       default: 0,

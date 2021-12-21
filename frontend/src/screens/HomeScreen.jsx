@@ -22,7 +22,7 @@ const HomeScreen = () => {
       <HomeBanner />
       <KidsBottom />
       <TopWears />
-      <PopularCategory />
+      {/* <PopularCategory /> */}
       <PopularItems />
       <VerifiedShippingSecure />
       <ContactUs />

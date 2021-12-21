@@ -9,6 +9,8 @@ router.get("/:id", Products.getOne);
 router.post("/",  Products.create);
 router.get("/unique",Products.uniqueCategory)
 router.post("/", Products.create);
+router.post("/wishlist/:id", Products.wishlist);
+router.post("/userWishlist/:id", Products.findOnesWishlistedProduct);
 router.put("/:id", protect, admin, Products.update);
 router.delete("/", protect, admin, Products.delete);
 
