@@ -91,9 +91,8 @@ const cartCtrl = {
           ],
           subTotal: parseInt(productDetails.price * quantity),
         };
-        cart = await Cart.create(cartData);
+        await Cart.create(cartData);
         res.status(201).json({
-          cart,
           message: "Item added to cart successfully",
         });
       }
