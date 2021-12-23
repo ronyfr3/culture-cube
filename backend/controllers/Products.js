@@ -1,7 +1,7 @@
-const Product = require("../model/Products");
 const ErrorHandler = require("../utils/errorHandler");
 const AsyncErrorHandler = require("../Middleware/catchAsyncError");
 const APIfeatures = require("../utils/Queries");
+const Product = require("../Model/Products");
 
 const Products = {
   getByLastYear: AsyncErrorHandler(async (req, res, next) => {
@@ -99,7 +99,7 @@ const Products = {
     const totalCount = await Product.countDocuments();
     const products = await apiFeature.query;
     if (products.length === 0) {
-      return next(new ErrorHandler("Empty Items list", 400));
+      res.status(200).json({ msg:"Empty Items list" });
     } else {
       res.status(200).json({ totalItems: totalCount, success: true, products });
     }
@@ -188,7 +188,7 @@ const Products = {
         product.countInStock = countInStock;
         product.sizes = sizes;
 
-        const product_details = await Product.save();
+        const product_details = await product.save();
         res
           .status(200)
           .json({ product_details, message: "Item updated successfully" });

@@ -1,7 +1,7 @@
 //handling uncaught exceptions, if something is undefined/uncaught then this will handled
 process.on("uncaughtException", (err) => {
   console.log(
-    `server is shutting down due to uncaught exception: ${err.message}`
+    `server is shutting down due to uncaught exception: ${err.message} ${err.stack}`
   );
 });
 
@@ -33,7 +33,8 @@ app.get("/", (req, res) => {
 });
 
 // Routes
-app.use("/user", require("./routes/User"));
+app.use("/api/user", require("./routes/User"));
+app.use("/api/cart", require("./routes/Cart"));
 app.use("/api/products", require("./routes/Products"));
 app.use("/api/orders", require("./routes/Orders"));
 

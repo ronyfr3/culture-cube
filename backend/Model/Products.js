@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-
 const reviewSchema = mongoose.Schema(
   {
     name: {
@@ -31,7 +30,7 @@ const reviewSchema = mongoose.Schema(
 );
 const wishlistSchema = mongoose.Schema(
   {
-    product:{},
+    product: {},
     user: {
       type: String,
       required: true,
@@ -78,7 +77,7 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: [true, "Description field required!"],
     },
-    wishlist:[wishlistSchema],
+    wishlist: [wishlistSchema],
     totalWishlist: {
       type: Number,
       default: 0,
@@ -96,7 +95,7 @@ const productSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-    sizes:[],
+    sizes: [],
     discountedPrice: Number,
     countInStock: Boolean,
   },
@@ -104,6 +103,5 @@ const productSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
-const Product = mongoose.model("CultureCubeProduct", productSchema);
 
-module.exports = Product;
+module.exports = mongoose.model("Products", productSchema);
