@@ -122,6 +122,7 @@ const Products = {
       !req.body.price ||
       !req.body.image ||
       !req.body.description ||
+      !req.body.discount ||
       !req.body.sizes
     ) {
       return next(new ErrorHandler("please fill in all fields", 404));

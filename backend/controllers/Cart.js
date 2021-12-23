@@ -8,7 +8,7 @@ const cartItems = async () => {
     path: "items.productId",
     select: "name price total",
   });
-  return carts[0];
+  return carts[0]; //zero index means all products will store in a single array field which is cart[0].items:[{product1},{product2},etc]
 };
 
 const cartCtrl = {
@@ -17,10 +17,11 @@ const cartCtrl = {
       path: "items.productId",
       // select: "name price total",
     });
+    const totalCount = await Cart.countDocuments();
     if (carts.length === 0) {
       res.status(200).json({ msg: "Empty Items list" });
     } else {
-      res.status(200).json({ success: true, carts });
+      res.status(200).json({ totalCarts: totalCount, success: true, carts });
     }
   }),
   create: AsyncErrorHandler(async (req, res, next) => {
@@ -30,7 +31,6 @@ const cartCtrl = {
       const { productId } = req.body;
       const quantity = Number.parseInt(req.body.quantity);
       let cart = await cartItems();
-
       let productDetails = await Product.findById(productId);
       if (!productDetails) {
         return next(new ErrorHandler("Item not found", 404));
@@ -77,9 +77,11 @@ const cartCtrl = {
           return next(new ErrorHandler("Item not added", 400));
         }
         let data = await cart.save();
-        res
-          .status(200)
-          .json({ data: data, message: "item added successfully" });
+        res.status(200).json({
+          totalCarts: data.items.length,
+          data: data,
+          message: "item added successfully",
+        });
       } else {
         const cartData = {
           items: [
@@ -94,16 +96,22 @@ const cartCtrl = {
         };
         cart = await Cart.create(cartData);
         res.status(201).json({
-          data: cart,
+          cart,
           message: "Item added to cart successfully",
         });
       }
     }
   }),
   delete: AsyncErrorHandler(async (req, res, next) => {
-    const item = await Cart.find(req.params.id);
-    if (item) {
-      await item.remove();
+    let cart = await cartItems();
+    if (cart.items.length || req.params.id) {
+      const index = cart.items.findIndex(
+        (item) => item._id.toString() === req.params.id
+      );
+      if (index > -1) {
+        cart.items.splice(index, 1);
+      }
+      await cart.save();
       res
         .status(200)
         .json({ success: true, message: "Item deleted successfully" });
@@ -112,10 +120,7 @@ const cartCtrl = {
     }
   }),
   emptyCart: AsyncErrorHandler(async (req, res, next) => {
-    const cart = await Cart.find().populate({
-      path: "items.productId",
-      select: "name price total",
-    });
+    const cart = await cartItems();
     cart.items = [];
     cart.subTotal = 0;
     let data = await cart.save();
