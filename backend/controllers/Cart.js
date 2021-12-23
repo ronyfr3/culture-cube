@@ -13,10 +13,7 @@ const cartItems = async () => {
 
 const cartCtrl = {
   getAll: AsyncErrorHandler(async (req, res, next) => {
-    const carts = await Cart.find().populate({
-      path: "items.productId",
-      // select: "name price total",
-    });
+    const carts = await cartItems();
     const totalCount = await Cart.countDocuments();
     if (carts.length === 0) {
       res.status(200).json({ msg: "Empty Items list" });
