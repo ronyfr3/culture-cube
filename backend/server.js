@@ -37,6 +37,7 @@ app.use("/api/user", require("./routes/User"));
 app.use("/api/cart", require("./routes/Cart"));
 app.use("/api/products", require("./routes/Products"));
 app.use("/api/orders", require("./routes/Orders"));
+app.use("/api/viewed", require("./routes/RecentlyViewProduct"));
 
 let PORT = process.env.PORT || 8080;
 const server = app.listen(PORT, () =>

@@ -81,6 +81,7 @@ const cartCtrl = {
         });
       } else {
         const cartData = {
+          user: req.user._id,
           items: [
             {
               productId: productId,
