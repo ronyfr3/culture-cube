@@ -7,6 +7,7 @@ const connectDB = async () => {
     .connect(MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      // useFindAndModify: false,
     })
     .then((data) => {
       console.log(`mongodb connection established with server: ${data.connection.host}`);

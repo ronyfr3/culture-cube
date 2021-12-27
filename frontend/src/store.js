@@ -47,8 +47,8 @@ const store = createStore(
   initialState,
   composeWithDevTools(applyMiddleware(...middleware))
 );
-const StateProvider = ({ children }) => {
-  return <Provider store={store}>{children}</Provider>;
-};
+// const StateProvider = ({ children }) => {
+//   return <Provider store={store}>{children}</Provider>;
+// };
 
-export default StateProvider;
+export default store;

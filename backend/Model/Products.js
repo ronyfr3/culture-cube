@@ -95,8 +95,11 @@ const productSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    discountedPrice: {
+      type: Number,
+      default: 0,
+    },
     sizes: [],
-    discountedPrice: Number,
     countInStock: Boolean,
   },
   {

@@ -11,7 +11,9 @@ router.get("/unique",Products.uniqueCategory)
 router.post("/", Products.create);
 router.post("/wishlist/:id", Products.wishlist);
 router.post("/userWishlist/:id", Products.findOnesWishlistedProduct);
-router.put("/:id", protect, admin, Products.update);
-router.delete("/", protect, admin, Products.delete);
+// router.put("/:id", protect, admin, Products.update);
+router.patch("/:id",  Products.update);
+// router.delete("/:id", protect, admin, Products.delete);
+router.delete("/:id", Products.delete);
 
 module.exports = router;

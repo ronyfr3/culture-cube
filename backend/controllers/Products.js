@@ -99,7 +99,7 @@ const Products = {
     const totalCount = await Product.countDocuments();
     const products = await apiFeature.query;
     if (products.length === 0) {
-      res.status(200).json({ msg:"Empty Items list" });
+      res.status(200).json({ msg: "Empty Items list" });
     } else {
       res.status(200).json({ totalItems: totalCount, success: true, products });
     }
@@ -159,43 +159,117 @@ const Products = {
     }
   }),
   update: AsyncErrorHandler(async (req, res, next) => {
-    if (Object.keys(req.body).length === 0) {
-      return next(new ErrorHandler("please fill at least one field", 404));
+    const id = req.params.id;
+    const findProduct = await Product.findById(req.params.id);
+    if (!req.body)
+      return next(new ErrorHandler("Data to update can not be empty!", 400));
+    if (req.body.discount) {
+      const updatedProduct = {
+        ...req.body,
+        discountedPrice:
+          findProduct.price - (findProduct.price * req.body.discount) / 100,
+      };
+      Product.findByIdAndUpdate(id, updatedProduct, {
+        useFindAndModify: false,
+      })
+        .then((data) => {
+          if (!data) {
+            return next(
+              new ErrorHandler(`Failed to update Product with id=${id}.`, 404)
+            );
+          } else
+            res.status(200).json({
+              data,
+              message: "Product was updated successfully.",
+            });
+        })
+        .catch((err) => {
+          return next(
+            new ErrorHandler(
+              `Error occured while updating Product with id=${id}.`,
+              500
+            )
+          );
+        });
+    } else if (req.body.price) {
+      const updatedProductwithPrice = {
+        ...req.body,
+        discountedPrice:
+          req.body.price - (req.body.price * findProduct.discount) / 100,
+      };
+      Product.findByIdAndUpdate(id, updatedProductwithPrice, {
+        useFindAndModify: false,
+      })
+        .then((data) => {
+          if (!data) {
+            return next(
+              new ErrorHandler(`Failed to update Product with id=${id}.`, 404)
+            );
+          } else
+            res.status(200).json({
+              data,
+              message: "Product was updated successfully.",
+            });
+        })
+        .catch((err) => {
+          return next(
+            new ErrorHandler(
+              `Error occured while updating Product with id=${id}.`,
+              500
+            )
+          );
+        });
+    } else if (req.body.price || req.body.discount) {
+      const updatedProductwithPrice = {
+        ...req.body,
+        discountedPrice:
+          req.body.price - (req.body.price * req.body.discount) / 100,
+      };
+      Product.findByIdAndUpdate(id, updatedProductwithPrice, {
+        useFindAndModify: false,
+      })
+        .then((data) => {
+          if (!data) {
+            return next(
+              new ErrorHandler(`Failed to update Product with id=${id}.`, 404)
+            );
+          } else
+            res.status(200).json({
+              data,
+              message: "Product was updated successfully.",
+            });
+        })
+        .catch((err) => {
+          return next(
+            new ErrorHandler(
+              `Error occured while updating Product with id=${id}.`,
+              500
+            )
+          );
+        });
     } else {
-      const {
-        name,
-        type,
-        category,
-        subCategory,
-        price,
-        image,
-        description,
-        discount,
-        countInStock,
-        sizes,
-      } = req.body;
-      const product = await Product.findById(req.params.id);
-      const calculatedDiscount = price - (price * discount) / 100;
-      if (product) {
-        product.name = name;
-        product.image = image;
-        product.category = category;
-        product.description = description;
-        product.subCategory = subCategory;
-        product.price = price;
-        product.discountedPrice = calculatedDiscount;
-        product.type = type;
-        product.discount = discount;
-        product.countInStock = countInStock;
-        product.sizes = sizes;
-
-        const product_details = await product.save();
-        res
-          .status(200)
-          .json({ product_details, message: "Item updated successfully" });
-      } else {
-        return next(new ErrorHandler("Item not found", 404));
-      }
+      Product.findByIdAndUpdate(id, req.body, {
+        useFindAndModify: false,
+      })
+        .then((data) => {
+          if (!data) {
+            return next(
+              new ErrorHandler(`Failed to update Product with id=${id}.`, 404)
+            );
+          } else
+            res.status(200).json({
+              data,
+              message: "Product was updated successfully.",
+            });
+        })
+        .catch((err) => {
+          return next(
+            new ErrorHandler(
+              `Error occured while updating Product with id=${id}.`,
+              500
+            )
+          );
+        });
     }
   }),
   delete: AsyncErrorHandler(async (req, res, next) => {
@@ -253,18 +327,18 @@ const Products = {
         //   res.status(400).json({ msg: "Item already wishlisted!" });
         // }
         const productobj = {
-          name:product.name,
-          type:product.type,
-          category:product.category,
-          subCategory:product.subCategory,
-          price:product.price,
-          image:product.image,
-          description:product.description,
-          discount:product.discount,
-          sizes:product.sizes
-        }
+          name: product.name,
+          type: product.type,
+          category: product.category,
+          subCategory: product.subCategory,
+          price: product.price,
+          image: product.image,
+          description: product.description,
+          discount: product.discount,
+          sizes: product.sizes,
+        };
         const wishlist = {
-          product:productobj,
+          product: productobj,
           // user: req.user._id,
           user: req.body.user,
         };
@@ -277,18 +351,20 @@ const Products = {
       }
     }
   }),
-  findOnesWishlistedProduct: AsyncErrorHandler(async (req, res, next) => {     
-    const user = req.params.id
+  findOnesWishlistedProduct: AsyncErrorHandler(async (req, res, next) => {
+    const user = req.params.id;
     if (user) {
       const product = await Product.find({});
-      const userWishlist = product.map(data=>data.wishlist).flat()
-      const filteringwishlistedProduct = userWishlist.filter(x=>Number(x.user)===Number(user))
+      const userWishlist = product.map((data) => data.wishlist).flat();
+      const filteringwishlistedProduct = userWishlist.filter(
+        (x) => Number(x.user) === Number(user)
+      );
       res
         .status(200)
-        .json({ success: true, product:filteringwishlistedProduct });
+        .json({ success: true, product: filteringwishlistedProduct });
     } else {
       return next(new ErrorHandler("user not found!", 404));
     }
-  })
+  }),
 };
 module.exports = Products;
