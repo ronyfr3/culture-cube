@@ -1,16 +1,28 @@
 const ErrorHandler = require("../utils/errorHandler");
 
 module.exports = (err, req, res, next) => {
-  err.statusCode = err.statusCode || 500;
-  err.message = err.message || "Internal Server Error";
+  console.log(`err`, err.message);
+  let error = { ...err };
+  error.message = err.message;
 
-  //mongodb error handler
+  //mongodb bad objectId
   if (err.name === "CastError") {
-    err = new ErrorHandler(`${err.path}: ${err.value} is invalid! `, 400);
+    const message = "Resource not found";
+    error = new ErrorHandler(message, 404);
+  }
+  //mongodb duplicate field error
+  if (err.code === 11000) {
+    const message = "duplicate field value entered";
+    error = new ErrorHandler(message, 404);
+  }
+  //mongodb validation error
+  if (err.name === "ValidationError") {
+    const message = Object.values(err.errors).map((value) => value.message);
+    error = new ErrorHandler(message, 404);
   }
 
-  res.status(err.statusCode).json({
+  res.status(error.statusCode || 500).json({
     success: false,
-    message: err.message,
+    message: error.message || "server error",
   });
 };
