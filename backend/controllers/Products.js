@@ -105,6 +105,12 @@ const Products = {
     }
   }),
   getOne: AsyncErrorHandler(async (req, res, next) => {
+    //this will check all collections _ids if it matches then go for next() otherwise throw an error
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return next(
+        new ErrorHandler(`No product found with id:${req.params.id}`, 400)
+      );
+    }
     const product = await Product.findById(req.params.id);
     if (product) {
       res.status(200).json({ success: true, product });
@@ -151,14 +157,21 @@ const Products = {
         discount,
         sizes,
       });
-
-      const product_details = await product.save();
-      res
-        .status(201)
-        .json({ product_details, message: "Item created successfully" });
+      await product
+        .save()
+        .then((data) =>
+          res.status(200).json({ data, message: "Item created successfully" })
+        )
+        .catch((err) => res.status(500).json({ message: "something wrong" }));
     }
   }),
   update: AsyncErrorHandler(async (req, res, next) => {
+    //this will check all collections _ids if it matches then go for next() otherwise throw an error
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return next(
+        new ErrorHandler(`No product found with id:${req.params.id}`, 400)
+      );
+    }
     const id = req.params.id;
     const findProduct = await Product.findById(req.params.id);
     if (!req.body)
@@ -273,6 +286,12 @@ const Products = {
     }
   }),
   delete: AsyncErrorHandler(async (req, res, next) => {
+    //this will check all collections _ids if it matches then go for next() otherwise throw an error
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return next(
+        new ErrorHandler(`No product found with id:${req.params.id}`, 400)
+      );
+    }
     const product = await Product.findById(req.params.id);
     if (product) {
       await product.remove();
@@ -315,6 +334,12 @@ const Products = {
     }
   }),
   wishlist: AsyncErrorHandler(async (req, res, next) => {
+    //this will check all collections _ids if it matches then go for next() otherwise throw an error
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return next(
+        new ErrorHandler(`No product found with id:${req.params.id}`, 400)
+      );
+    }
     if (Object.keys(req.body).length === 0) {
       return next(new ErrorHandler("wishlist not added!", 404));
     } else {
@@ -352,6 +377,12 @@ const Products = {
     }
   }),
   findOnesWishlistedProduct: AsyncErrorHandler(async (req, res, next) => {
+    //this will check all collections _ids if it matches then go for next() otherwise throw an error
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return next(
+        new ErrorHandler(`No product found with id:${req.params.id}`, 400)
+      );
+    }
     const user = req.params.id;
     if (user) {
       const product = await Product.find({});
