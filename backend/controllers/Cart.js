@@ -98,7 +98,6 @@ const cartCtrl = {
     let user = req.user._id;
     let cart = await Cart.findOne({ user });
     // console.log(cart);
-    // handle mongoose id vaidation mongoose.types.....
     if (!cart) {
       return next(
         new ErrorHandler("you can't delete this cart,unauthorized user")
@@ -129,12 +128,12 @@ const cartCtrl = {
   emptyCart: AsyncErrorHandler(async (req, res, next) => {
     let user = req.user._id;
     let cart = await Cart.findOne({ user });
-    cart.items = [];
-    cart.subTotal = 0;
-    let data = await cart.save();
-    res
-      .status(200)
-      .json({ data: data, message: "cart has been emptied successfully" });
+    if (cart) {
+      await Cart.findByIdAndDelete(cart._id);
+      res.status(200).json({ message: "cart has been emptied successfully" });
+    } else {
+      return next(new ErrorHandler("item not found", 404));
+    }
   }),
 };
 
