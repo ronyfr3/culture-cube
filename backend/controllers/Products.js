@@ -2,6 +2,7 @@ const ErrorHandler = require("../utils/errorHandler");
 const AsyncErrorHandler = require("../Middleware/catchAsyncError");
 const APIfeatures = require("../utils/Queries");
 const Product = require("../Model/Products");
+const mongoose = require('mongoose')
 
 const Products = {
   getByLastYear: AsyncErrorHandler(async (req, res, next) => {
